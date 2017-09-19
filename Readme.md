@@ -8,12 +8,12 @@ This editor aims at writing long articles with hassle-free typing. The text edit
 
 
 -- Part of my semester minor project.
--- Group: 
+-- Group:
     -Manu
     -Vansh
     -Yash
     -Lakshit
-    
+
 -- Total files:
     --Makefile
     --emend.c
@@ -64,7 +64,7 @@ DISABLING CTRL+C AND CTRL+Z SIGNALS:
 
 --Ctrlc sends sigint signal to the current process which causes it to terminate. Ctrl+z sends a sigtstp signal to the current process which causes it to suspend. ISIG turns them both off. ISIG comes from termios.h
 
-DISBLING CTRL+S AND CTRL+Q 
+DISBLING CTRL+S AND CTRL+Q
 
 -- By default, both are software flow control. ctrl+s stops data from being transmitted to the terminal until you press ctrl+q. We turn off this feature.
 
@@ -80,7 +80,7 @@ FIXING Ctrl+M ISSUE:
 
 TURNING OFF ALL OUTPUT PROCESSING:
 
---Terminal translates each newline we print into a carriage return followed by a newline. Carriage return moves the cursor back to the beginning of the current line, and the newline moves the cursor down a line, scrolling the screen if necessary. We turn this feature off all output processing features by turning off the OPOST flag. 
+--Terminal translates each newline we print into a carriage return followed by a newline. Carriage return moves the cursor back to the beginning of the current line, and the newline moves the cursor down a line, scrolling the screen if necessary. We turn this feature off all output processing features by turning off the OPOST flag.
 --OPOST comes from termios.h > O is for output flag and POST stands for Post-Processing Of Output. Here occurs a problem. If we run the program at this point, the newline is there but it is not shifting to the left side of the terminal. To fix this let's add carruage return to our printf() statements.From now on, we’ll have to write out the full "\r\n" whenever we want to start a new line.
 
 --We turn off some more miscellaneous flags.
@@ -91,5 +91,5 @@ A TIMEOUT FOR READ() FUNCTION:
 
 --VMIN and VTIME come from termios.h. They play as an index to the c_cc field which stands for control characters. There is not much effect on BASH on windows. But plays a significant role in Ubuntu linux.
 
+//Date: 19-9-2017
 ERROR HANDLING IN THE TEXT EDITOR:
-
