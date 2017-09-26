@@ -100,3 +100,8 @@ ERROR HANDLING IN THE TEXT EDITOR:
 - Reason for adding perror was that the global variable does not print descriptive text error. Perror prints descriptive error. It also prints string given to it before it prints error message.
 
 -We the exit the program with exit(1) status which indcates failure. exit(0) indicates success.
+
+-errno and EAGAIN come from <errno.h>.
+tcsetattr(), tcgetattr(), and read() all return -1 on failure, and set the errno value to indicate the error.
+
+An easy way to make tcgetattr() fail is to give your program a text file or a pipe as the standard input instead of your terminal. To give it a file as standard input, run ./emend <emend.c. To give it a pipe, run echo test | ./emend. Both should result in the same error from tcgetattr(), something like Inappropriate ioctl for device.
