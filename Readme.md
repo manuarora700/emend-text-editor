@@ -93,3 +93,10 @@ A TIMEOUT FOR READ() FUNCTION:
 
 //Date: 19-9-2017
 ERROR HANDLING IN THE TEXT EDITOR:
+
+-enableRawMode() gets us into raw mode, Let us clean up the code by adding error handling. FIrst we add die() function that prints error messages.
+-in die() perror() comes from stdio.h file. and exit() is from stdlib.h
+
+- Reason for adding perror was that the global variable does not print descriptive text error. Perror prints descriptive error. It also prints string given to it before it prints error message.
+
+-We the exit the program with exit(1) status which indcates failure. exit(0) indicates success.
