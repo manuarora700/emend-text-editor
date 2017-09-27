@@ -105,3 +105,6 @@ ERROR HANDLING IN THE TEXT EDITOR:
 tcsetattr(), tcgetattr(), and read() all return -1 on failure, and set the errno value to indicate the error.
 
 An easy way to make tcgetattr() fail is to give your program a text file or a pipe as the standard input instead of your terminal. To give it a file as standard input, run ./emend <emend.c. To give it a pipe, run echo test | ./emend. Both should result in the same error from tcgetattr(), something like Inappropriate ioctl for device.
+
+DATE: 26/9/2017
+SECTIONS
