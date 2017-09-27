@@ -24,7 +24,7 @@ void enableRawMode()
     // struct termios, tcgetattr(), tcsetattr(), ECHO, and TCSAFLUSH all come from <termios.h>.
     if (tcgetattr(STDIN_FILENO, &orig_termios) == -1)
     {
-      die("tcgetattr");
+      die("tcgetattr"); // die tcgetattr
     }
     atexit(disableRawMode);
 
@@ -39,7 +39,7 @@ void enableRawMode()
 
     if (tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw) == -1)
     {
-      die("tcsetattr");
+      die("tcsetattr"); //Die tcsetattr()
     }
 }
 int main()
