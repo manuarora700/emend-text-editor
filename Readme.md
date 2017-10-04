@@ -120,4 +120,4 @@ Date: 4/10/2017
 
 --Secondly, We make a function for low-level keypress reading and other functions for mapping keypresses to editor operations. We will also stop printing out keypresses now. We create a function for that.
 
--- We added two functions editorReadKey() and editorProcessKeypresses(). editorReadKey() waits for oen keypress and returns it later.
+-- We added two functions editorReadKey() and editorProcessKeypresses(). editorReadKey() waits for oen keypress and returns it later.,editorProcessKeypress() waits for a keypress, and then handles it. Later, it will map various Ctrl key combinations and other special keys to different editor functions, and insert any alphanumeric and other printable keys’ characters into the text that is being edited.
