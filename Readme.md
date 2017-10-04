@@ -110,3 +110,10 @@ DATE: 26/9/2017
 SECTIONS:
 
 We split our code into sections and the handling of RAW mode is done till now.
+
+NExt, we’ll do some more low-level terminal input/output handling, and use that to draw to the screen and allow the user to move the cursor around.
+
+============================================================================================================================
+
+Date: 4/10/2017
+--Previously we used 'Ctrl' key combined with alphabetic keys seemed to map to bytes from 1-26. We can also use the same key combinations and perform different operations. We start by mappign Ctrl + Q to Quit the program instead of just pressing q key.

@@ -6,6 +6,9 @@
 #include<unistd.h>
 #include<termios.h>
 
+// DEFINES
+
+#define CTRL_KEY(K) ((K) & 0x1f) //Mapping with Q to perform Ctrl + Q Quit operation
 // DATA
 struct termios orig_termios;
 
@@ -67,7 +70,7 @@ int main()
         {
             printf("%d ('%c')\r\n", c, c);
         }
-        if(c == 'q')
+        if (c == CTRL_KEY('q'))// previously if(c == 'q')
         {
             break;
         }
