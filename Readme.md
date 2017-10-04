@@ -117,3 +117,7 @@ NExt, we’ll do some more low-level terminal input/output handling, and use tha
 
 Date: 4/10/2017
 --Previously we used 'Ctrl' key combined with alphabetic keys seemed to map to bytes from 1-26. We can also use the same key combinations and perform different operations. We start by mappign Ctrl + Q to Quit the program instead of just pressing q key.
+
+--Secondly, We make a function for low-level keypress reading and other functions for mapping keypresses to editor operations. We will also stop printing out keypresses now. We create a function for that.
+
+-- We added two functions editorReadKey() and editorProcessKeypresses(). editorReadKey() waits for oen keypress and returns it later.
