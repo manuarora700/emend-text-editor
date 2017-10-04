@@ -121,3 +121,13 @@ Date: 4/10/2017
 --Secondly, We make a function for low-level keypress reading and other functions for mapping keypresses to editor operations. We will also stop printing out keypresses now. We create a function for that.
 
 -- We added two functions editorReadKey() and editorProcessKeypresses(). editorReadKey() waits for oen keypress and returns it later.,editorProcessKeypress() waits for a keypress, and then handles it. Later, it will map various Ctrl key combinations and other special keys to different editor functions, and insert any alphanumeric and other printable keys’ characters into the text that is being edited.
+
+--Clearing the screen:
+We’re going to render the editor’s user interface to the screen after each keypress. Let’s start by just clearing the screen.
+
+write() and STDOUT_FILENO come from <unistd.h>.
+
+We are writing an escape sequence to the terminal. Escape sequences always start with an escape character (27) followed by a [ character. Escape sequences instruct the terminal to do various text formatting tasks, such as coloring text, moving the cursor around, and clearing parts of the screen.
+We are using the J command (Erase In Display) to clear the screen. Escape sequence commands take arguments, which come before the command. In this case the argument is 2, which says to clear the entire screen. <esc>[1J would clear the screen up to where the cursor is, and <esc>[0J would clear the screen from the cursor up to the end of the screen. Also, 0 is the default argument for J, so just <esc>[J by itself would also clear the screen from the cursor to the end.
+For our text editor, we will be mostly using VT100 escape sequences, which are supported very widely by modern terminal emulators. See the VT100 User Guide for complete documentation of each escape sequence.
+If we wanted to support the maximum number of terminals out there, we could use the ncurses library, which uses the terminfo database to figure out the capabilities of a terminal and what escape sequences to use for that particular terminal.

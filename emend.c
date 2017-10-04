@@ -60,6 +60,12 @@ char editorReadKey()
   return c;
 }
 
+/*** output ***/
+void editorRefreshScreen()
+{
+  write(STDOUT_FILENO, "\x1b[2J", 4);
+}
+
 /*** input ***/
 void editorProcessKeypress()
 {
@@ -76,8 +82,10 @@ int main()
 {
     enableRawMode(); //Enables raw mode
     // read() and STDIN_FILENO part of <unistd.h>
-    while (1) {
-    editorProcessKeypress();
-  }
+    while (1)
+    {
+      editorRefreshScreen();
+      editorProcessKeypress();
+    }
   return 0;
 }
