@@ -1,3 +1,4 @@
+// INCLUDES
 #include<ctype.h>
 #include<errno.h>
 #include<stdio.h>
@@ -5,7 +6,10 @@
 #include<unistd.h>
 #include<termios.h>
 
+// DATA
 struct termios orig_termios;
+
+// TERMINAL
 void die(const char *s)
 {
   perror(s);
@@ -42,6 +46,8 @@ void enableRawMode()
       die("tcsetattr"); //Die tcsetattr()
     }
 }
+
+// INIT
 int main()
 {
     enableRawMode(); //Enables raw mode
