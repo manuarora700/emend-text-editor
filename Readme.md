@@ -10,7 +10,7 @@ This editor aims at writing long articles with hassle-free typing. The text edit
 -- Part of my semester minor project.
 -- Group:
     -Manu Arora
-    -Vansh
+    -Vansh Madan
     -Yash
     -Lakshit
 
