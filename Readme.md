@@ -14,7 +14,7 @@ This editor aims at writing long articles with hassle-free typing. The text edit
     -Yash Saluja
     -Lakshit Kumar Singh
 
--- Total files:
+-- Total files included:
     --Makefile
     --emend.c
     --Readme.md
