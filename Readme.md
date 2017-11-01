@@ -11,7 +11,7 @@ This editor aims at writing long articles with hassle-free typing. The text edit
 -- Group:
     -Manu Arora
     -Vansh Madan
-    -Yash
+    -Yash Saluja
     -Lakshit
 
 -- Total files:
