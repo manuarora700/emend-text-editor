@@ -132,4 +132,12 @@ We are using the J command (Erase In Display) to clear the screen. Escape sequen
 For our text editor, we will be mostly using VT100 escape sequences, which are supported very widely by modern terminal emulators. See the VT100 User Guide for complete documentation of each escape sequence.
 If we wanted to support the maximum number of terminals out there, we could use the ncurses library, which uses the terminfo database to figure out the capabilities of a terminal and what escape sequences to use for that particular terminal.
 
-DATE: 24th Oct 2017
+DATE: 2nd November 2017
+
+REPOSITIONING THE CURSOR:
+--<esc>[2J Command left the cursor at the bottom of the screen. Let's reposition it at the top left corner so that we're ready to draw the editor Interface from top to bottom.
+
+--<esc>[H is only 3 bytes long and uses the command H to position the cursor.
+
+
+-- We now clear the screen and reposition the cursor when our program exits. If an error occurs in the middle, We don't want a bunch of garbage left on the screen and we dont want the error to be printer wherever the cursor happens to be at that point.
