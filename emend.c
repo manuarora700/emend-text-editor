@@ -13,6 +13,7 @@
 #define EMEND_VERSION "0.0.1"
 /*** DATA ***/
 struct editorConfig {
+  int cx, cy;
   int screenrows;
   int screencols;
   struct termios orig_termios;
@@ -124,13 +125,14 @@ void abFree(struct abuf *ab)
 
 
 
-void editorDrawRows(struct abuf *ab) {
+void editorDrawRows(struct abuf *ab)
+{
   int y;
   for (y = 0; y < E.screenrows; y++) {
     if (y == E.screenrows / 3) {
       char welcome[80];
       int welcomelen = snprintf(welcome, sizeof(welcome),
-        "Kilo editor -- version %s", EMEND_VERSION);
+        "Emend Text Editor -- version %s", EMEND_VERSION);
       if (welcomelen > E.screencols) welcomelen = E.screencols;
       int padding = (E.screencols - welcomelen) / 2;
       if (padding) {
@@ -173,10 +175,14 @@ void editorProcessKeypress()
   }
 }
 /*** INIT ***/
+
 void initEditor()
 {
+  E.cx = 0;
+  E.cy = 0;
   if (getWindowSize(&E.screenrows, &E.screencols) == -1) die("getWindowSize");
 }
+
 int main()
 {
   enableRawMode(); //Enables raw mode
