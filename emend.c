@@ -1,4 +1,4 @@
-// INCLUDES
+/*** INCLUDES ***/
 #include<ctype.h>
 #include<errno.h>
 #include<stdio.h>
@@ -6,21 +6,26 @@
 #include<unistd.h>
 #include<termios.h>
 
-// DEFINES
-
+/*** DEFINES ***/
 #define CTRL_KEY(K) ((K) & 0x1f) //Mapping with Q to perform Ctrl + Q Quit operation
-// DATA
-struct termios orig_termios;
 
-// TERMINAL
+/*** DATA ***/
+struct editorConfig {
+  struct termios orig_termios;
+};
+struct editorConfig E;
+
+/*** TERMINAL ***/
 void die(const char *s)
 {
+  write(STDOUT_FILENO, "\x1b[2J", 4); //Clearing the screen
+  write(STDOUT_FILENO, "\x1b[H", 3); // Clearing the screen
   perror(s);
   exit(1);
 }
 void disableRawMode()
 {
-    if (tcsetattr(STDIN_FILENO, TCSAFLUSH, &orig_termios) == -1)
+    if (tcsetattr(STDIN_FILENO, TCSAFLUSH, &E.orig_termios) == -1)
     {
       die("tcsetattr");
     }
@@ -29,13 +34,13 @@ void disableRawMode()
 void enableRawMode()
 {
     // struct termios, tcgetattr(), tcsetattr(), ECHO, and TCSAFLUSH all come from <termios.h>.
-    if (tcgetattr(STDIN_FILENO, &orig_termios) == -1)
+    if (tcgetattr(STDIN_FILENO, &E.orig_termios) == -1)
     {
       die("tcgetattr"); // die tcgetattr
     }
     atexit(disableRawMode);
 
-    struct termios raw = orig_termios;
+    struct termios raw = E.orig_termios;
     raw.c_iflag &= ~(BRKINT | ICRNL | INPCK | ISTRIP | IXON);
     raw.c_oflag &= ~(OPOST);
     raw.c_cflag |= (CS8); //It is not a flag but a bitmask
@@ -60,25 +65,38 @@ char editorReadKey()
   return c;
 }
 
-/*** output ***/
+/*** OUTPUT ***/
+
+void editorDrawRows()
+{
+  int y;
+  for (y = 0; y < 24; y++) {
+    write(STDOUT_FILENO, "~\r\n", 3);
+  }
+}
 void editorRefreshScreen()
 {
   write(STDOUT_FILENO, "\x1b[2J", 4); // Escape sequence
   write(STDOUT_FILENO, "\x1b[H", 3); // Escape sequence
+
+  editorDrawRows();
+  write(STDOUT_FILENO, "\x1b[H", 3);
 }
 
-/*** input ***/
+/*** INPUT ***/
 void editorProcessKeypress()
 {
   char c = editorReadKey();
   switch (c)
   {
     case CTRL_KEY('q'):
+      write(STDOUT_FILENO, "\x1b[2J", 4);
+      write(STDOUT_FILENO, "\x1b[H", 3);
       exit(0);
       break;
   }
 }
-// INIT
+/*** INIT ***/
 int main()
 {
     enableRawMode(); //Enables raw mode

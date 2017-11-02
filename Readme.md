@@ -141,3 +141,14 @@ REPOSITIONING THE CURSOR:
 
 
 -- We now clear the screen and reposition the cursor when our program exits. If an error occurs in the middle, We don't want a bunch of garbage left on the screen and we dont want the error to be printer wherever the cursor happens to be at that point.
+
+-- We have two exit points we want to clear the screen at: die(), and when the user presses Ctrl-Q to quit.
+We could use atexit() to clear the screen when our program exits, but then the error message printed by die() would get erased right after printing it.
+
+TILDES:
+-- Just like tildes in VIM text editor, We are going to use tildes in our text editor. we’ll draw a tilde at the beginning of any lines that come after the end of the file being edited. It is taken from the book PRACTICAL VIM.
+
+Steve Oualline wrote the first book completely dedicated to Vim. It's written for Vim 5.7, but it is still a useful introduction to any modern version of Vim. The book is also available as a PDF
+
+--For tildes, EDITORDRAWROWS() will habdle drawing of each row of the buffer of text being edited. For now it draws a tilde in each row, which means that row is not a part of the file and cant contain any text. Since we don't know the size of the terminal just yet, we dont know how many rows to draw. For now we just draw 24 rows.
+After were done drawing, we do another <esc>[H Excape sequence to reposition the cursor back to the top left corner.
