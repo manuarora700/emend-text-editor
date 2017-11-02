@@ -152,3 +152,14 @@ Steve Oualline wrote the first book completely dedicated to Vim. It's written fo
 
 --For tildes, EDITORDRAWROWS() will habdle drawing of each row of the buffer of text being edited. For now it draws a tilde in each row, which means that row is not a part of the file and cant contain any text. Since we don't know the size of the terminal just yet, we dont know how many rows to draw. For now we just draw 24 rows.
 After were done drawing, we do another <esc>[H Excape sequence to reposition the cursor back to the top left corner.
+
+Our global variable containing our editor state is named E. We must then replace all ocurrences of orig_termios to E.orig_termios.
+
+EASY WAY TO SIZE THE WINDOW:
+On most systems, you should be able to get the size of the terminal by simply calling ioctl() with the TIOCGWINSZ request. (As far as I can tell, it stands for Terminal IOCtl (which itself stands for Input/Output Control) Get WINdow SiZe.)
+--ioctl(), TIOCGWINSZ, and struct winsize come from <sys/ioctl.h>.
+On success, ioctl() will place the number of columns wide and the number of rows high the terminal is into the given winsize struct. On failure, ioctl() returns -1. We also check to make sure the values it gave back weren’t 0, because apparently that’s a possible erroneous outcome. If ioctl() failed in either way, we have getWindowSize() report failure by returning -1. If it succeeded, we pass the values back by setting the int references that were passed to the function. (This is a common approach to having functions return multiple values in C. It also allows you to use the return value to indicate success or failure.)
+Now let’s add screenrows and screencols to our global editor state, and call getWindowSize() to fill in those values.
+
+--initEditor()’s job will be to initialize all the fields in the E struct.
+This approach displays the correct number of tildes. THere's also a hard approach but let;s not get into that.
