@@ -3,13 +3,14 @@
 #include<errno.h>
 #include<stdio.h>
 #include<stdlib.h>
+#include <string.h>
 #include <sys/ioctl.h>
 #include<unistd.h>
 #include<termios.h>
 
 /*** DEFINES ***/
 #define CTRL_KEY(K) ((K) & 0x1f) //Mapping with Q to perform Ctrl + Q Quit operation
-
+#define EMEND_VERSION "0.0.1"
 /*** DATA ***/
 struct editorConfig {
   int screenrows;
@@ -68,7 +69,8 @@ char editorReadKey()
   return c;
 }
 
-int getCursorPosition(int *rows, int *cols) {
+int getCursorPosition(int *rows, int *cols)
+{
   char buf[32];
   unsigned int i = 0;
   if (write(STDOUT_FILENO, "\x1b[6n", 4) != 4) return -1;
@@ -83,7 +85,8 @@ int getCursorPosition(int *rows, int *cols) {
   return 0;
 }
 
-int getWindowSize(int *rows, int *cols) {
+int getWindowSize(int *rows, int *cols)
+{
   struct winsize ws;
   if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) == -1 || ws.ws_col == 0) {
     if (write(STDOUT_FILENO, "\x1b[999C\x1b[999B", 12) != 12) return -1;
@@ -95,26 +98,67 @@ int getWindowSize(int *rows, int *cols) {
   }
 }
 
+/*** append buffer ***/
+struct abuf {
+  char *b;
+  int len;
+};
+#define ABUF_INIT {NULL, 0}
+
+void abAppend(struct abuf *ab, const char *s, int len)
+{
+  char *new = realloc(ab->b, ab->len + len);
+  if (new == NULL) return;
+  memcpy(&new[ab->len], s, len);
+  ab->b = new;
+  ab->len += len;
+}
+
+void abFree(struct abuf *ab)
+{
+  free(ab->b);
+}
+
+
 /*** OUTPUT ***/
 
-void editorDrawRows() {
+
+
+void editorDrawRows(struct abuf *ab) {
   int y;
   for (y = 0; y < E.screenrows; y++) {
-    write(STDOUT_FILENO, "~", 1);
+    if (y == E.screenrows / 3) {
+      char welcome[80];
+      int welcomelen = snprintf(welcome, sizeof(welcome),
+        "Kilo editor -- version %s", EMEND_VERSION);
+      if (welcomelen > E.screencols) welcomelen = E.screencols;
+      int padding = (E.screencols - welcomelen) / 2;
+      if (padding) {
+        abAppend(ab, "~", 1);
+        padding--;
+      }
+      while (padding--) abAppend(ab, " ", 1);
+      abAppend(ab, welcome, welcomelen);
+    } else {
+      abAppend(ab, "~", 1);
+    }
+    abAppend(ab, "\x1b[K", 3);
     if (y < E.screenrows - 1) {
-      write(STDOUT_FILENO, "\r\n", 2);
+      abAppend(ab, "\r\n", 2);
     }
   }
 }
 void editorRefreshScreen()
 {
-  write(STDOUT_FILENO, "\x1b[2J", 4); // Escape sequence
-  write(STDOUT_FILENO, "\x1b[H", 3); // Escape sequence
-
-  editorDrawRows();
-  write(STDOUT_FILENO, "\x1b[H", 3);
+  struct abuf ab = ABUF_INIT;
+  abAppend(&ab, "\x1b[?25l", 6);
+  abAppend(&ab, "\x1b[H", 3);
+  editorDrawRows(&ab);
+  abAppend(&ab, "\x1b[H", 3);
+  abAppend(&ab, "\x1b[?25h", 6);
+  write(STDOUT_FILENO, ab.b, ab.len);
+  abFree(&ab);
 }
-
 /*** INPUT ***/
 void editorProcessKeypress()
 {
