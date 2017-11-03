@@ -1,0 +1,118 @@
+Muscle building food
+Food items involved:
+1. Eggs
+2. Chicken
+3. Milk
+4. Paneer
+5. Oats
+6. Peanut butter
+7. Almonds
+8. Peanuts
+9. Rice
+10. Wheat bread
+11. Potatoes
+12. Wheat roti
+13. Bananas
+14. Apple
+15. Veggies
+
+===============================================
+Carbs and protein distribution
+
+1. Eggs
+Quantity = 10
+Cost = 40 rupees
+Protein = 44 gms
+Carbs = 2 gms
+
+2. Chicken breast
+Quantity = 100 gm
+cost = 25 rupees
+protein = 31 gms
+carbs = 2gms
+
+3. Milk
+Quantity = 500 ml
+Cost = 26 rs
+Protein = 20 gms
+Carbs = 20 gms
+
+4. Paneer
+Quantity = 100gm
+Cost = 22 rs
+Protein = 20 gms
+carbs = 0 gms
+
+5. Oats
+Quantity = 100gms
+Cost = 17 rupees
+Protein = 6gms
+Carbs = 54
+
+6. Peanut butter
+Quantity = 2 tbsp
+protein = 7 gms
+varbs = 7gms
+
+7. Almonds
+Qty = 30gms
+cost= 17 rupees
+protein = 7
+carbs = 7
+
+8. Peanuts
+qty = 30 gms
+cost = 7 
+protein = 7
+carbs = 7
+
+9. Rice
+AVAILABLE IN MESS EAT ALL DAY
+qty = 50 gms
+protein = 7
+carbs = 45
+
+10. Wheat bread
+cost = 10 rupey
+qty = 4 slices
+carbs = 48
+protein = 8
+
+11. Potatoes
+AVAILABLE FROM MESS
+qty = 200gms
+protein = 1
+carbs = 45
+
+12. Roti
+AVAILABLE IN MESS
+qty = 2
+Protein = 8
+Carbs = 44
+
+13. Bananas
+qty = 2
+cost = 10 rupey
+p = 0
+carbs = 50gms
+
+14. Apple
+qty = 1
+cost = 10
+protein = 0
+carbs = 25
+lots of fibres
+
+15. Veggies
+AVAILABLE IN MESS SALAD
+Cucumber, Carrots, Onion
+Lots of fibres 
+carbs = 25 gms
+
+
+Total money involved in a day = 200 rupees
+Monthly budget = 200*30 = 6000 around 6k rupees
+
+Total protein intake = 165 grams
+Total carbs intake = 374 grams
+

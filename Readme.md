@@ -187,3 +187,6 @@ Okay, our abuf type is ready to be put to use.
 --snprintf() comes from <stdio.h>.
 We use the welcome buffer and snprintf() to interpolate our KILO_VERSION string into the welcome message. We also truncate the length of the string in case the terminal is too tiny to fit our welcome message.
 Now let’s center it.
+
+--By setting the first constant in the enum to 1000, the rest of the constants get incrementing values of 1001, 1002, 1003, and so on.
+That concludes our arrow key handling code. At this point, it can be fun to try entering an escape sequence manually while the program runs. Try pressing the Escape key, the [ key, and Shift+C in sequence really fast, and you may see your keypresses being interpreted as the right arrow key being pressed. You have to be pretty fast to do it, so you may want to adjust the VTIME value in enableRawMode() temporarily, to make it easier. (It also helps to know that pressing Ctrl-[ is the same as pressing the Escape key, for the same reason that Ctrl-M is the same as pressing Enter: Ctrl clears the 6th and 7th bits of the character you type in combination with it.)
