@@ -1,5 +1,4 @@
 EMEND: A TEXT EDITOR
-
 Emend is a text editor which uses structures, Pointersm File systems and Interacts with the terminal at a very low level. Text editor is very useful for writing and editing codes and long articles. Typically, a text editor provides an "empty" display screen with a settled-line length and visible line numbers. So, user would then be able to fill the lines in with content, line by line. All of the text editor coding is done with converting the terminal into RAW mode from CANONICAL or COOKED mode.
 
 Text Manager provides facilities, for example, spell checking, search and replace, macros, syntax highlighting, and alphabetic sorting.
