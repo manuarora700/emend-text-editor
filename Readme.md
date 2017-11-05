@@ -6,8 +6,7 @@ Text Manager provides facilities, for example, spell checking, search and replac
 This editor aims at writing long articles with hassle-free typing. The text editor is designed using C language. C99 is the C language standard that is used which lets us to declare the variables anywhere in the program, Unlike ANSI C standards.
 
 
--- Part of my semester
-minor project.
+-- Part of my semester minor project.
 -- Group:
     -Manu Arora
     -Vansh Madan
