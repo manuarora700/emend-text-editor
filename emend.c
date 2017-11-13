@@ -668,6 +668,9 @@ void initEditor() {
   E.rowoff = 0;
   E.coloff = 0;
   E.numrows = 0;
+  E.rowoff = 0;
+  E.coloff = 0;
+  E.numrows = 0;
   E.row = NULL;
   E.dirty = 0;
   E.filename = NULL;
