@@ -265,6 +265,8 @@ void editorRowAppendString(erow *row, char *s, size_t len) {
   row->size += len;
   row->chars[row->size] = '\0';
   editorUpdateRow(row);
+  editorUpdateRow(row);
+
   E.dirty++;
 }
 void editorRowDelChar(erow *row, int at) {
