@@ -133,6 +133,8 @@ int editorReadKey() {
             case '4': return END_KEY;
             case '5': return PAGE_UP;
             case '6': return PAGE_DOWN;
+            case '6': return PAGE_DOWN;
+
             case '7': return HOME_KEY;
             case '8': return END_KEY;
           }
