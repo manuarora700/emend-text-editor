@@ -168,7 +168,8 @@ int getCursorPosition(int *rows, int *cols)
     if (read(STDIN_FILENO, &buf[i], 1) != 1) break;
     if (buf[i] == 'R') break;
     i++;
-    
+    i++;
+
   }
   buf[i] = '\0';
   if (buf[0] != '\x1b' || buf[1] != '[') return -1;
