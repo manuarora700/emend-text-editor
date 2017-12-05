@@ -315,8 +315,6 @@ void editorUpdateSyntax(erow *row) {
         i++;
         prev_sep = 0;
         continue;
-        continue;
-
       }
     }
     if (prev_sep) {
